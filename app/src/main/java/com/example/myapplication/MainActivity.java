@@ -1,34 +1,28 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.View;
+
+import com.example.myapplication.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView txt;
-    Button btn;
-    Button btn2;
-    EditText editTxt;
+    private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        txt = findViewById(R.id.txt);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        btn= findViewById(R.id.button);
-        btn2 = findViewById(R.id.button2);
-        btn.setOnClickListener(v->{
-            editTxt = findViewById(R.id.editText);
-            String szoveg ="Input szöveg: " + editTxt.getText().toString();
-            txt.setText(szoveg);
+        binding.button.setOnClickListener(v->{
+            String szoveg ="Input szöveg: " + binding.editText.getText().toString();
+            binding.txt.setText(szoveg);
         });
 
-        btn2.setOnClickListener(v->{
-            txt.setText("Kettes gomb megnyomva");
+        binding.button2.setOnClickListener(v->{
+            binding.txt.setText("Kettes gomb megnyomva");
         });
     }
 }
